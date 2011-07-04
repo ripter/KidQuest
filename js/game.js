@@ -20,6 +20,12 @@ define(['scenes','items'], function(scenes, items) {
             }
         },
         /**
+         * Returns the active items in the active scene
+         */
+        activeItems: function() {
+            return activeScene.items;
+        },
+        /**
          * Draws the active scene, which then draws any elements in that scene
          */
         draw: function(canvas) {
