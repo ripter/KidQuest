@@ -26,6 +26,16 @@ define(['scenes','items'], function(scenes, items) {
             return activeScene.items;
         },
         /**
+         * Sets the active scene
+         */
+        setActiveScene: function(scene_name) {
+            console.log('scene_name', scene_name, 'scene', scenes[scene_name]);
+            if (undefined == scenes[scene_name]) {
+                throw "Scene was invalid";
+            }
+            activeScene = scenes[scene_name];
+        },
+        /**
          * Draws the active scene, which then draws any elements in that scene
          */
         draw: function(canvas) {
@@ -36,10 +46,12 @@ define(['scenes','items'], function(scenes, items) {
             // draw the background
             canvas.drawImage(activeScene.img, 0, 0);
             // draw all of the items
-            i = activeScene.items.length;
-            while(i--) {
-                item = activeScene.items[i];
-                canvas.drawImage(items[item.name].img, item.x, item.y, item.height, item.width);
+            if (undefined != activeScene.items) {
+                i = activeScene.items.length;
+                while(i--) {
+                    item = activeScene.items[i];
+                    canvas.drawImage(items[item.name].img, item.x, item.y, item.height, item.width);
+                }
             }
         }
     }

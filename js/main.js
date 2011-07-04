@@ -1,4 +1,4 @@
-require(['underscore-min','game', 'fps', 'input'], function(underscore, game, fps) {
+require(['game', 'fps', 'input'], function(game, fps) {
     require.ready(function() {
         var canvas = document.getElementById('c'),
             context = canvas.getContext('2d'),

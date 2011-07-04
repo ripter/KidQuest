@@ -1,23 +1,18 @@
 /**
  * Input handling
  */
-define(['game', 'underscore-min'],function(game) {
+define(['game', 'items', 'events', 'underscore-min'],function(game, items, events) {
     var canvas = document.getElementById('c'),
         offsetX = canvas.offsetLeft,
         offsetY = canvas.offsetTop;
 
     /**
-     * Handles Keydown Events
+     * Find the item clicked on
      */
-    document.onkeydown = function(evt) {
-        console.log('keydown', evt);
-    }
-
     canvas.onclick = function(evt) {
         var mouseX = evt.clientX - offsetX,
             mouseY = evt.clientY - offsetY;
 
-        console.log('click', evt, mouseX, mouseY, 'canvas', this);
         // find the item clicked on
         var item = _(game.activeItems()).select(function(item) {
             return item.x <= mouseX
@@ -26,6 +21,11 @@ define(['game', 'underscore-min'],function(game) {
                 && (item.y + item.height) >= mouseY;
         });
 
-        console.log('clicked item', item);
+        if (item.length > 0) {
+            console.log('clicked item', item[0], items[item[0].name], items);
+            // get the full item from the item JSON
+            item = items[item[0].name];
+            events[item.click.name](item, item.click.arguments);
+        }
     }
 });
