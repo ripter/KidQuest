@@ -1,7 +1,16 @@
 // All of the scenes
 define({
     homeBedroomMC: {
-        src: 'img/scenes/home_bedroom_mc.png'
+        src: 'img/scenes/home_bedroom_mc.png',
+        items: [
+            {
+                name: 'outside',
+                x: 50,
+                y: 100,
+                height: 100,
+                width: 100
+            }
+        ]
     },
     homeBedroomParents: {
         src: 'img/scenes/home_bedroom_parents.png'
