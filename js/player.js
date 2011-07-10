@@ -29,6 +29,12 @@ define(function() {
             this.img.src = 'img/mobs/girl_pink.png';
         },
         /**
+         * returns true if the player is moving
+         */
+        isMoving: function() {
+            return this.isMovingX || this.isMovingY;
+        },
+        /**
          * Draws the player on the context
          */
         draw: function(context) {

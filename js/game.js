@@ -2,7 +2,8 @@
  * Game object
  */
 define(['scenes','items', 'player'], function(scenes, items, player) {
-    var activeScene = scenes.homeBedroomMC;
+    var activeScene, nextScene,
+        checkForSwitch = false;
 
     return {
         /**
@@ -31,11 +32,15 @@ define(['scenes','items', 'player'], function(scenes, items, player) {
          * Sets the active scene
          */
         setActiveScene: function(scene_name) {
-            if (undefined == scenes[scene_name]) {
-                throw "Scene was invalid";
+            console.log('this', this, 'checkForSwitch', checkForSwitch, 'nextScene', nextScene);
+                if (undefined == scenes[scene_name]) {
+                    throw "Scene was invalid";
+                }
+
+            if (!checkForSwitch) {
+                checkForSwitch = true;
+                nextScene = scenes[scene_name];
             }
-            activeScene = scenes[scene_name];
-            player.setPosition(activeScene.start);
         },
         /**
          * Draws the active scene, which then draws any elements in that scene
@@ -61,6 +66,10 @@ define(['scenes','items', 'player'], function(scenes, items, player) {
          * Update game objects
          */
         update: function(dt) {
+            if (checkForSwitch && !player.isMoving()) {
+                activeScene = nextScene;
+                player.setPosition(activeScene.start);
+            }
             player.update();
         }
     }
