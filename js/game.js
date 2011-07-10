@@ -69,6 +69,9 @@ define(['scenes','items', 'player'], function(scenes, items, player) {
             if (checkForSwitch && !player.isMoving()) {
                 activeScene = nextScene;
                 player.setPosition(activeScene.start);
+
+                checkForSwitch = false;
+                nextScene = null;
             }
             player.update();
         }

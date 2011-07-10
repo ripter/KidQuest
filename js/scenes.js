@@ -13,7 +13,7 @@ define({
     },
     homeHallway: {
         src: 'img/scenes/home_hallway.png',
-        start: {x: 200, y: 200},
+        start: {x: 200, y: 400},
         items: [
             {
                 name: 'mcBedRoomDoor',

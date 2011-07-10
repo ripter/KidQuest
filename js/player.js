@@ -12,61 +12,61 @@ define(function() {
          * @param point an object with x,y properties.
          */
         setPosition: function(point) {
-            this.x = point.x;
-            this.y = point.y;
+            x = point.x;
+            y = point.y;
         },
         /**
          * Moves the player to the point
          */
         moveTo: function(point) {
-            this.destX = point.x;
-            this.destY = point.y;
-            this.isMovingX = true;
-            this.isMovingY = true;
+            destX = point.x;
+            destY = point.y;
+            isMovingX = true;
+            isMovingY = true;
         },
         loadImages: function() {
-            this.img = document.createElement('img');
-            this.img.src = 'img/mobs/girl_pink.png';
+            img = document.createElement('img');
+            img.src = 'img/mobs/girl_pink.png';
         },
         /**
          * returns true if the player is moving
          */
         isMoving: function() {
-            return this.isMovingX || this.isMovingY;
+            return isMovingX || isMovingY;
         },
         /**
          * Draws the player on the context
          */
         draw: function(context) {
-            context.drawImage(this.img, this.x, this.y, 76, 89);
+            context.drawImage(img, x, y, 76, 89);
         },
         /**
          * Update the player
          */
         update: function() {
-            if (this.isMovingX) {
+            if (isMovingX) {
 
                 // are we close to the destination?
-                if (this.x <= (this.destX + 10)
-                        && (this.x >= (this.destX - 10))) {
-                    this.isMovingX = false;
+                if (x <= (destX + 10)
+                        && (x >= (destX - 10))) {
+                    isMovingX = false;
                 }
                 
                 // move the player
-                if (this.destX > this.x) { this.x += 10; }
-                else if (this.destX < this.x) { this.x -= 10}
+                if (destX > x) { x += 10; }
+                else if (destX < x) { x -= 10}
             }
 
-            if (this.isMovingY) {
+            if (isMovingY) {
                 // are we close to the destination?
-                if (this.y <= (this.destY + 10)
-                        && (this.y >= (this.destY - 10))) {
-                    this.isMovingY = false;
+                if (y <= (destY + 10)
+                        && (y >= (destY - 10))) {
+                    isMovingY = false;
                 }
                 
                 // move the player
-                if (this.destY > this.y) { this.y += 10; }
-                else if (this.destY < this.y) { this.y -= 10}
+                if (destY > y) { y += 10; }
+                else if (destY < y) { y -= 10}
 
             }
         }
