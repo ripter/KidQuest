@@ -15,6 +15,15 @@ define(function() {
             this.x = point.x;
             this.y = point.y;
         },
+        /**
+         * Moves the player to the point
+         */
+        moveTo: function(point) {
+            this.destX = point.x;
+            this.destY = point.y;
+            this.isMovingX = true;
+            this.isMovingY = true;
+        },
         loadImages: function() {
             this.img = document.createElement('img');
             this.img.src = 'img/mobs/girl_pink.png';
