@@ -16,7 +16,8 @@ define(['game', 'items', 'events', 'player', 'underscore-min'],function(game, it
         // move the player to the location
         player.destX = mouseX;
         player.destY = mouseY;
-        player.isMoving = true;        
+        player.isMovingX = true;        
+        player.isMovingY = true;
 
         // find the item clicked on
         var item = _(game.activeItems()).select(function(item) {

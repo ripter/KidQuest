@@ -3,7 +3,7 @@
  */
 define(function() {
     var x,y,img, destX, destY,
-        isMoving = false;
+        isMovingX = false, isMovingY = false;
 
     
     return {
@@ -29,15 +29,30 @@ define(function() {
          * Update the player
          */
         update: function() {
-            if (this.isMoving) {
+            if (this.isMovingX) {
 
-                console.log('player update', this.x, this.destX);
-                if ((this.x - this.destX) > 0) {
-                    if (this.destX > this.x) { this.x++; }
-                    else { this.x--; }
-
-                    this.x++;
+                // are we close to the destination?
+                if (this.x <= (this.destX + 10)
+                        && (this.x >= (this.destX - 10))) {
+                    this.isMovingX = false;
                 }
+                
+                // move the player
+                if (this.destX > this.x) { this.x += 10; }
+                else if (this.destX < this.x) { this.x -= 10}
+            }
+
+            if (this.isMovingY) {
+                // are we close to the destination?
+                if (this.y <= (this.destY + 10)
+                        && (this.y >= (this.destY - 10))) {
+                    this.isMovingY = false;
+                }
+                
+                // move the player
+                if (this.destY > this.y) { this.y += 10; }
+                else if (this.destY < this.y) { this.y -= 10}
+
             }
         }
     }
