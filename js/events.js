@@ -9,7 +9,6 @@ define(['game'], function(game) {
          */
         changeScene: function(item, arg) {
             // simple change of scene
-            console.log('arg', arg);
             game.setActiveScene(arg);
         }
     };

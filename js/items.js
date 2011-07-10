@@ -8,5 +8,23 @@ define({
             name: 'changeScene',
             arguments: 'homeBedroomParents'
         }
+    },
+    mcBedRoomDoor: {
+        src: 'img/items/door.png',
+        height: 76,
+        width: 89,
+        click: {
+            name: 'changeScene',
+            arguments: 'homeBedroomMC'
+        }
+    },
+    hallwayDoor: {
+        src: 'img/items/door.png',
+        height: 76,
+        width: 89,
+        click: {
+            name: 'changeScene',
+            arguments: 'homeHallway'
+        }
     }
 });

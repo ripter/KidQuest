@@ -1,7 +1,7 @@
 /**
  * Input handling
  */
-define(['game', 'items', 'events', 'underscore-min'],function(game, items, events) {
+define(['game', 'items', 'events', 'player', 'underscore-min'],function(game, items, events, player) {
     var canvas = document.getElementById('c'),
         offsetX = canvas.offsetLeft,
         offsetY = canvas.offsetTop;
@@ -13,16 +13,20 @@ define(['game', 'items', 'events', 'underscore-min'],function(game, items, event
         var mouseX = evt.clientX - offsetX,
             mouseY = evt.clientY - offsetY;
 
+        // move the player to the location
+        player.destX = mouseX;
+        player.destY = mouseY;
+        player.isMoving = true;        
+
         // find the item clicked on
         var item = _(game.activeItems()).select(function(item) {
             return item.x <= mouseX
                 && item.y <= mouseY
-                && (item.x + item.width) >= mouseX 
-                && (item.y + item.height) >= mouseY;
+                && (item.x + items[item.name].width) >= mouseX 
+                && (item.y + items[item.name].height) >= mouseY;
         });
 
         if (item.length > 0) {
-            console.log('clicked item', item[0], items[item[0].name], items);
             // get the full item from the item JSON
             item = items[item[0].name];
             events[item.click.name](item, item.click.arguments);

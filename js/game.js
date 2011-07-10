@@ -1,7 +1,7 @@
 /**
  * Game object
  */
-define(['scenes','items'], function(scenes, items) {
+define(['scenes','items', 'player'], function(scenes, items, player) {
     var activeScene = scenes.homeBedroomMC;
 
     return {
@@ -18,6 +18,8 @@ define(['scenes','items'], function(scenes, items) {
                 items[prop].img = document.createElement('img');
                 items[prop].img.src = items[prop].src;
             }
+
+            player.loadImages();
         },
         /**
          * Returns the active items in the active scene
@@ -29,11 +31,11 @@ define(['scenes','items'], function(scenes, items) {
          * Sets the active scene
          */
         setActiveScene: function(scene_name) {
-            console.log('scene_name', scene_name, 'scene', scenes[scene_name]);
             if (undefined == scenes[scene_name]) {
                 throw "Scene was invalid";
             }
             activeScene = scenes[scene_name];
+            player.setPosition(activeScene.start);
         },
         /**
          * Draws the active scene, which then draws any elements in that scene
@@ -42,7 +44,6 @@ define(['scenes','items'], function(scenes, items) {
             var i = 0,
                 item;
 
-            //console.log(activeScene);
             // draw the background
             canvas.drawImage(activeScene.img, 0, 0);
             // draw all of the items
@@ -50,9 +51,17 @@ define(['scenes','items'], function(scenes, items) {
                 i = activeScene.items.length;
                 while(i--) {
                     item = activeScene.items[i];
-                    canvas.drawImage(items[item.name].img, item.x, item.y, item.height, item.width);
+                    canvas.drawImage(items[item.name].img, item.x, item.y, items[item.name].height, items[item.name].width);
                 }
             }
+            // draw the mobs
+            player.draw(canvas);
+        },
+        /**
+         * Update game objects
+         */
+        update: function(dt) {
+            player.update();
         }
     }
 });

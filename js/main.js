@@ -11,6 +11,8 @@ require(['game', 'fps', 'input'], function(game, fps) {
 
         // load the game images
         game.loadImages();
+        // set the first scene
+        game.setActiveScene('homeBedroomMC');
 
 
         // use the onEachFrame if it exists, or use the fallback if it doesn't
@@ -44,6 +46,9 @@ require(['game', 'fps', 'input'], function(game, fps) {
             dt = frame - last_frame;
             last_frame = frame;
             
+
+            // update the objects
+            game.update(dt);
 
             // draw the game!
             game.draw(context);

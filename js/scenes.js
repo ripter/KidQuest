@@ -2,13 +2,23 @@
 define({
     homeBedroomMC: {
         src: 'img/scenes/home_bedroom_mc.png',
+        start: {x: 200, y: 200},
         items: [
             {
-                name: 'outside',
+                name: 'hallwayDoor',
                 x: 50,
-                y: 100,
-                height: 100,
-                width: 100
+                y: 100
+            }
+        ]
+    },
+    homeHallway: {
+        src: 'img/scenes/home_hallway.png',
+        start: {x: 200, y: 200},
+        items: [
+            {
+                name: 'mcBedRoomDoor',
+                x: 200,
+                y: 400
             }
         ]
     },
