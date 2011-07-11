@@ -1,7 +1,7 @@
 /**
  * Game object
  */
-define(['scenes','items', 'player'], function(scenes, items, player) {
+define(['scenes','items', 'player', 'menu'], function(scenes, items, player, menu) {
     var activeScene, nextScene,
         checkForSwitch = false;
 
@@ -21,6 +21,7 @@ define(['scenes','items', 'player'], function(scenes, items, player) {
             }
 
             player.loadImages();
+            menu.loadImages();
         },
         /**
          * Returns the active items in the active scene
@@ -61,6 +62,8 @@ define(['scenes','items', 'player'], function(scenes, items, player) {
             }
             // draw the mobs
             player.draw(canvas);
+
+            menu.draw(canvas);
         },
         /**
          * Update game objects
